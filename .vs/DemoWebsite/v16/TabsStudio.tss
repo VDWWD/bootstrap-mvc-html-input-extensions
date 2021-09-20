@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>C:\Temp\WebApplication1\Extensions\Helpers.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Temp\WebApplication1\Extensions\BootstrapFileUploadFor.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Temp\WebApplication1\Extensions\AllowedFileTypeAttribute.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Temp\WebApplication1\scripts.js</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Temp\WebApplication1\styles.css</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Temp\WebApplication1\Views\Shared\_Layout.cshtml</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Temp\WebApplication1\Extensions\BootstrapTextBoxFor.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Temp\WebApplication1\Models\HomeViewModel.cs</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>

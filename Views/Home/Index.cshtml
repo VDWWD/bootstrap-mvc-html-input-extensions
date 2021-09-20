@@ -1,0 +1,274 @@
+﻿@model DemoWebsite.Models.HomeViewModel
+
+<!-- van der Waal Webdesign -->
+<!-- https://www.vanderwaal.eu -->
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @role = "form" }))
+{
+    <div class="container bg-white pt-3 pb-3">
+
+        @if (!string.IsNullOrEmpty(Model.ResultMessage))
+        {
+            <div class="row">
+                <div class="col">
+
+                    @if (Model.Result)
+                    {
+                        <div class="alert alert-success font-weight-bold" role="alert">
+                            @Model.ResultMessage
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger font-weight-bold" role="alert">
+                            @Model.ResultMessage
+                        </div>
+                    }
+
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col text-center pb-4">
+
+                <h2>MVC Bootstrap HTML Input Extensions Demo</h2>
+
+                <p>The classes differ for version 4 and 5 so use the buttons to switch between them.</p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center pb-4">
+
+                <a href="/?version=4" class="btn btn-secondary">Bootstrap 4</a>
+
+            </div>
+            <div class="col text-center pb-4">
+
+                <a href="/?version=5" class="btn btn-secondary">Bootstrap 5</a>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 pr-md-4">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.Name)
+                                @Html.BootstrapTextBoxFor(m => m.Name)
+                                @Html.BootstrapValidationMessageFor(m => m.Name)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.Email)
+
+                                <!-- you can still add extra properties such as class -->
+
+                                @Html.BootstrapTextBoxFor(m => m.Email, new { @class = "text-success" })
+                                @Html.BootstrapValidationMessageFor(m => m.Email)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.Birthdate) @Html.BootstrapToolTip("Please be honest. You don't look THAT old.")
+                                @Html.BootstrapDateTextBoxFor(m => m.Birthdate)
+                                @Html.BootstrapValidationMessageFor(m => m.Birthdate)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.Gender)
+                                @Html.BootstrapRadioButtonFor(m => m.Gender, DemoWebsite.Models.HomeViewModel.GenderEnum.Unknown)
+                                @Html.BootstrapRadioButtonFor(m => m.Gender, DemoWebsite.Models.HomeViewModel.GenderEnum.Male)
+                                @Html.BootstrapRadioButtonFor(m => m.Gender, DemoWebsite.Models.HomeViewModel.GenderEnum.Female)
+                                @Html.BootstrapRadioButtonFor(m => m.Gender, DemoWebsite.Models.HomeViewModel.GenderEnum.Its_Complicated, new { disabled = "disabled" })
+                                @Html.BootstrapRadioButtonFor(m => m.Gender, DemoWebsite.Models.HomeViewModel.GenderEnum.Apache_Helicopter)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.Message)
+                                @Html.BootstrapTextAreaFor(m => m.Message)
+                                @Html.BootstrapValidationMessageFor(m => m.Message)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6 pl-md-4">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.Telephone)
+                                @Html.BootstrapTextBoxFor(m => m.Telephone)
+                                @Html.BootstrapValidationMessageFor(m => m.Telephone)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.Password)
+                                @Html.BootstrapTextBoxFor(m => m.Password)
+                                @Html.BootstrapValidationMessageFor(m => m.Password)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.Rating) @Html.BootstrapToolTip("Higher is better!")
+                                @Html.BootstrapDropDownListFor(m => m.Rating, new SelectList(Enumerable.Range(1, 10)), "Select...")
+                                @Html.BootstrapValidationMessageFor(m => m.Rating)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapSwitchFor(m => m.Switch)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.SwitchNoLabel)
+                                @Html.BootstrapSwitchFor(m => m.SwitchNoLabel, new { disabled = "disabled" }, true)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                @Html.BootstrapLabelFor(m => m.Image)
+                                @Html.BootstrapFileUploadFor(m => m.Image, new { capture = "camera" })
+                                @Html.BootstrapValidationMessageFor(m => m.Image)
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.ImageBase64))
+                    {
+                        <div class="row">
+                            <div class="col">
+
+                                <img src="@Model.ImageBase64" class="img-fluid" />
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 pr-md-4">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col pt-3">
+                            <div class="form-group">
+                                @Html.BootstrapCheckBoxFor(m => m.TermsAndConditions)
+                                <div>
+                                    @Html.BootstrapValidationMessageFor(m => m.TermsAndConditions)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col pt-3">
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    @Html.AntiForgeryToken()
+}
+
+
+<div class="container bg-white pt-3 pb-3 d-none">
+    <hr />
+    <div class="row">
+        <div class="col">
+
+            <div class="pt-2 pb-2">
+                @Html.BootstrapCheckBoxFor(m => m.TermsAndConditions, new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapDateTextBoxFor(m => m.Birthdate, new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapDropDownListFor(m => m.Rating, new SelectList(Enumerable.Range(1, 10)), "Select...", new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapFileUploadFor(m => m.Image, new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapLabelFor(m => m.Name, new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapRadioButtonFor(m => m.Birthdate, DemoWebsite.Models.HomeViewModel.GenderEnum.Apache_Helicopter, new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapSwitchFor(m => m.Switch, new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapTextAreaFor(m => m.Message, new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapTextBoxFor(m => m.Name, new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapToolTip("For testing.", new { @class = "for-testing", disabled = "disabled" })
+            </div>
+            <div class="pt-2 pb-2">
+                @Html.BootstrapValidationMessageFor(m => m.Name, new { @class = "for-testing", disabled = "disabled" })
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

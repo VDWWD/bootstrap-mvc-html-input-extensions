@@ -1,0 +1,20 @@
+﻿.textarea-remain {
+    float: right;
+    font-size: 0.7rem;
+    margin-top: 3px;
+}
+
+.textarea-remain-value {
+    color: #bf1616;
+}
+
+.input-validation-error {
+    border: 1px solid #bf1616 !important;
+    background-color: #fce7e7 !important;
+}
+
+.for-testing {
+    border: 1px solid blue;
+    background-color: yellow !important;
+    color: black;
+}

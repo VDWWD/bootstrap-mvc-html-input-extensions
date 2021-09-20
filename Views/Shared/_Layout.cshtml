@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title>VDWWD - MVC Bootstrap HTML Input Extensions</title>
+
+    @if (DemoWebsite.BootstrapHelper.Version == BootstrapHelper.BootstrapVersion.Version5)
+    {
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+
+        <style>
+            /* the margin for form group is missing in version 5. The documentation just has mb-3 for the spacing between form elements */
+            .form-group {
+                margin-bottom: 1rem;
+            }
+        </style>
+    }
+    else
+    {
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    }
+
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+<body style="background-color: #4b4d66">
+
+    @RenderBody()
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    @if (DemoWebsite.BootstrapHelper.Version == BootstrapHelper.BootstrapVersion.Version5)
+    {
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    }
+    else
+    {
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    }
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0-RC3/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="/scripts.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
