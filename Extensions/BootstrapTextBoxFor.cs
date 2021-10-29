@@ -80,22 +80,26 @@ namespace DemoWebsite
             //find the maxlengt from the StringLength attribute
             if (!textbox.Attributes.Any(x => x.Key.ToLower() == "maxlength"))
             {
-                var member = expression.Body as MemberExpression;
-                var stringLength = member.Member.GetCustomAttributes(typeof(StringLengthAttribute), false).FirstOrDefault() as StringLengthAttribute;
                 int maxLength = 50;
+                var member = (MemberExpression)expression.Body;
 
-                if (stringLength != null)
+                if (member?.Member != null)
                 {
-                    maxLength = stringLength.MaximumLength;
-                }
-                else
-                {
-                    //if there is no stringLength then use RangeAttribute. So if the range is [Range(5, 250)] then the maxlength will be 3 since the biggest number is three digits
-                    var stringLengthInt = member.Member.GetCustomAttributes(typeof(RangeAttribute), false).FirstOrDefault() as RangeAttribute;
+                    var stringLength = member.Member.GetCustomAttributes(typeof(StringLengthAttribute), false).FirstOrDefault();
 
-                    if (stringLengthInt != null)
+                    if (stringLength != null)
                     {
-                        maxLength = stringLengthInt.Maximum.ToString().Length;
+                        maxLength = ((StringLengthAttribute)stringLength).MaximumLength;
+                    }
+                    else
+                    {
+                        //indien geen string lengte probeer dan maxlengt te bepalen door lenge van grootste nummer in range
+                        var stringLengthRange = member.Member.GetCustomAttributes(typeof(RangeAttribute), false).FirstOrDefault();
+
+                        if (stringLengthRange != null)
+                        {
+                            maxLength = ((RangeAttribute)stringLengthRange).Maximum.ToString().Length;
+                        }
                     }
                 }
 

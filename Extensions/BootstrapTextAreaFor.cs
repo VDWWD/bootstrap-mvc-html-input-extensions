@@ -23,12 +23,17 @@ namespace DemoWebsite
             var modelValue = metadata.Model;
 
             //find the maxlengt from the StringLength attribute
-            var member = expression.Body as MemberExpression;
-            var stringLength = member.Member.GetCustomAttributes(typeof(StringLengthAttribute), false).FirstOrDefault() as StringLengthAttribute;
-            int maxLength = 100;
-            if (stringLength != null)
+            int maxLength = 250;
+            var member = (MemberExpression)expression.Body;
+
+            if (member?.Member != null)
             {
-                maxLength = stringLength.MaximumLength;
+                var stringLength = member.Member.GetCustomAttributes(typeof(StringLengthAttribute), false).FirstOrDefault();
+
+                if (stringLength != null)
+                {
+                    maxLength = ((StringLengthAttribute)stringLength).MaximumLength;
+                }
             }
 
             //create the textarea

@@ -31,12 +31,16 @@ namespace DemoWebsite
                 attributes["class"] = $"{BootstrapHelper.FilePickerInput} {attributes["class"]}";
             }
 
-            //get the allowed extension as accept from the FileType attribute
-            var member = expression.Body as MemberExpression;
-            var filetypes = member.Member.GetCustomAttributes(typeof(FileTypeAttribute), false).FirstOrDefault() as FileTypeAttribute;
-            if (filetypes != null)
+            //get the allowed extension accepts from the FileType attribute
+            var member = (MemberExpression)expression.Body;
+            if (member?.Member != null)
             {
-                attributes.Add("accept", "." + string.Join(",.", filetypes._ValidTypes));
+                var filetypes = member.Member.GetCustomAttributes(typeof(FileTypeAttribute), false).FirstOrDefault();
+
+                if (filetypes != null)
+                {
+                    attributes.Add("accept", "." + string.Join(",.", ((FileTypeAttribute)filetypes)._ValidTypes));
+                }
             }
 
             //get the normal textbox html
