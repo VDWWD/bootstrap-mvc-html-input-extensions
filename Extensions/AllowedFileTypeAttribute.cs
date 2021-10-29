@@ -23,13 +23,15 @@ namespace DemoWebsite
             ErrorMessage = $"The file type \"EXT\" is not allowed{extratekst}.";
         }
 
+
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var enumerableTest = value as System.Collections.IEnumerable;
+            var enumerableTest = (System.Collections.IEnumerable)value;
 
             if (enumerableTest == null)
             {
-                HttpPostedFileBase file_upload = value as HttpPostedFileBase;
+                var file_upload = (HttpPostedFileBase)value;
+
                 if (file_upload != null)
                 {
                     if (!_ValidTypes.Any(e => file_upload.FileName.ToLower().EndsWith(e)))
@@ -40,10 +42,11 @@ namespace DemoWebsite
             }
             else
             {
-                IEnumerable<HttpPostedFileBase> files_upload = value as IEnumerable<HttpPostedFileBase>;
+                var files_upload = (IEnumerable<HttpPostedFileBase>)value;
+
                 if (files_upload != null)
                 {
-                    foreach (HttpPostedFileBase file in files_upload)
+                    foreach (var file in files_upload)
                     {
                         if (file != null && !_ValidTypes.Any(e => file.FileName.ToLower().EndsWith(e)))
                         {
@@ -56,6 +59,7 @@ namespace DemoWebsite
             return ValidationResult.Success;
         }
 
+
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
             var rule = new ModelClientValidationRule
@@ -63,6 +67,7 @@ namespace DemoWebsite
                 ValidationType = "filetype",
                 ErrorMessage = ErrorMessageString
             };
+
             rule.ValidationParameters.Add("validtypes", string.Join(",", _ValidTypes));
             yield return rule;
         }
